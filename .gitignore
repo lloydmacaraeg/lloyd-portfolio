@@ -1,0 +1,15 @@
+# Secrets and local config
+.env
+.env.*
+!.env.example
+
+# Runtime data
+storage/*
+!storage/.gitkeep
+
+# OS / editor
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.log

@@ -1,0 +1,10 @@
+# Used by Apache (Docker image, XAMPP). Ignored by the PHP built-in server.
+Options -Indexes
+DirectoryIndex index.php
+
+<FilesMatch "^\.(env|git)">
+    Require all denied
+</FilesMatch>
+<FilesMatch "\.(log|md|dist|example)$">
+    Require all denied
+</FilesMatch>
