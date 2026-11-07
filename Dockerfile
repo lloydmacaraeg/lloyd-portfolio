@@ -29,4 +29,6 @@ RUN mkdir -p storage && chown -R www-data:www-data storage
 ENV PORT=10000
 EXPOSE 10000
 
-CMD ["sh", "-c", "sed -ri \"s/^Listen 80\$/Listen ${PORT}/\" /etc/apache2/ports.conf && sed -ri \"s/<VirtualHost \\*:[0-9]+>/<VirtualHost *:${PORT}>/\" /etc/apache2/sites-available/000-default.conf && exec apache2-foreground"]
+
+CMD ["sh", "-c", "set -e; sed -ri \"s/^[[:space:]]*Listen[[:space:]]+[0-9]+/Listen ${PORT:-10000}/\" /etc/apache2/ports.conf; sed -ri \"s/<VirtualHost \\*:[0-9]+>/<VirtualHost *:${PORT:-10000}>/g\" /etc/apache2/sites-available/000-default.conf; echo \"Starting Apache on port ${PORT:-10000}\"; exec apache2-foreground"]
+
